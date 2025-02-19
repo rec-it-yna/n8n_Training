@@ -1,0 +1,719 @@
+{
+  "name": "Training exercice merge",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "name",
+              "field2": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2a818c84-eb21-49b3-8686-8fd2a1fa4c7e",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        -740
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4c067539-9df8-4612-955f-4cdd3fddce42",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAllPeople"
+      },
+      "id": "f84d4b36-9488-446e-b89e-1d1c44c28fbc",
+      "name": "Customer Datastore (n8n training)",
+      "type": "n8n-nodes-base.n8nTrainingCustomerDatastore",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        -920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    'name': 'Jay Gatsby',\n    'language': 'English',\n    'country': {\n      'code': 'US',\n      'name': 'United States'\n    }\n    \n  }\n  \n];"
+      },
+      "id": "80e5f505-08c5-4a26-8800-3cd9dcf4039e",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# 3. Add items from B below items from A\n",
+        "height": 360,
+        "width": 1020
+      },
+      "id": "9c3bbd98-90aa-40cb-b5cb-a80a8b6b8409",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        780
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# 1. Keep items from A if there's a match in B\n",
+        "height": 380,
+        "width": 1020
+      },
+      "id": "f9bc4887-d87d-469a-8b82-3db4a3035a02",
+      "name": "Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        -20
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# 2. Enrich items from A with matching data from B",
+        "height": 380,
+        "width": 1020
+      },
+      "id": "4f237be0-255a-4e91-ac49-5291b7b18cd5",
+      "name": "Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        380
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Adds the quantity needed to each ingredient in the recipe\n\n## Similar to SQL Left join\n\n",
+        "width": 480
+      },
+      "id": "ccdd2ad6-ce84-4346-a688-97837ce84301",
+      "name": "Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        520
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## This will keep only the ingredients needed that are also in stock\n\n## Similar to SQL Inner join",
+        "width": 480
+      },
+      "id": "92be3a6c-ed0c-4863-bc02-6b81586f8442",
+      "name": "Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        120
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## This will create a super band by merging Queen and Led Zeppelin\n\n## Similar to SQL Union All \n(more flexible as not requires all fields to be the same)",
+        "height": 200,
+        "width": 480
+      },
+      "id": "16371071-2b5c-4489-a407-1d5c80357029",
+      "name": "Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        880
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Name",
+              "field2": "Name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ea31c1e8-da23-4291-b2f0-bf687ea64036",
+      "name": "Ingredients in stock from recipe",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        -180,
+        160
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {},
+      "id": "f9ac6b27-357e-4ce8-bc80-ae41b1913287",
+      "name": "Super Band",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        -160,
+        940
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n  {\n    \"Name\": \"Flour\",\n  },\n  {\n    \"Name\": \"Eggs\",\n  },\n  {\n    \"Name\": \"Milk\",\n  },\n  {\n    \"Name\": \"Lemon\",\n  },\n  {\n    \"Name\": \"Sugar\",\n  },\n];\n"
+      },
+      "id": "1d9d93ba-0131-4983-a89a-f974fb201dc9",
+      "name": "A. Ingredients Needed",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n  {\n    \"Name\": \"Eggs\",\n  },\n  {\n    \"Name\": \"Lemon\",\n  },\n  {\n    \"Name\": \"Sugar\",\n  },\n];\n"
+      },
+      "id": "03d2535f-03b4-4140-b62d-cd0f2aebae7e",
+      "name": "B. Ingredients in stock",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        220
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Name",
+              "field2": "Name"
+            }
+          ]
+        },
+        "joinMode": "enrichInput1",
+        "options": {}
+      },
+      "id": "c0affd24-108e-4976-bff2-6eb890d91b35",
+      "name": "Merge recipe",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        -160,
+        560
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n  {\n    \"Name\": \"Flour\",\n  },\n  {\n    \"Name\": \"Eggs\",\n  },\n  {\n    \"Name\": \"Milk\",\n  },\n  {\n    \"Name\": \"Lemon\",\n  },\n  {\n    \"Name\": \"Sugar\",\n  },\n];\n"
+      },
+      "id": "5ee924b3-28f6-45b7-91a2-5ea0e44ad695",
+      "name": "A. Ingredients",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        480
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n  {\n    \"Name\": \"Flour\",\n    \"Quantity\": \"100g\",\n  },\n  {\n    \"Name\": \"Eggs\",\n    \"Quantity\": 2,\n  },\n  {\n    \"Name\": \"Salt\",\n    \"Quantity\": \"50g\"\n  },\n  {\n    \"Name\": \"Lemon\",\n    \"Quantity\": 1,\n  },\n  {\n    \"Name\": \"Sugar\",\n    \"Quantity\": \"6tbsp\",\n  },\n];\n"
+      },
+      "id": "9ee5f3b6-2e9e-4181-a6bd-dcb5586dfe3d",
+      "name": "B. Recipe quantities",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        620
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n{\n\"FirstName\": \"John\",\n\"LastName\": \"Deacon\",\n\"Instrument\": \"Drums\",\n},\n{\n\"FirstName\": \"Freddy\",\n\"LastName\": \"Mercury\",\n\"Instrument\": \"Vocals and Piano\",\n\"Superpower\": \"Crowd control\"\n},\n{\n\"FirstName\": \"Brian\",\n\"LastName\": \"May\",\n\"Instrument\": \"Guitar\",\n},\n{\n\"FirstName\": \"Roger\",\n\"LastName\": \"Taylor\",\n\"Instrument\": \"Bass\",\n}\n];\n"
+      },
+      "id": "95e239e6-307c-4d86-87f1-6b2b8c743525",
+      "name": "A. Queen",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        860
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": " return [\n{\n\"FirstName\": \"Jimmy\",\n\"LastName\": \"Page\",\n\"Instrument\": \"Guitar\"\n},\n{\n\"FirstName\": \"Robert\",\n\"LastName\": \"Plant\",\n\"Instrument\": \"Vocals\",\n},\n{\n\"FirstName\": \"John\",\n\"LastName\": \"Bonham\",\n\"Instrument\": \"Drums\",\n},\n{\n\"FirstName\": \"John\",\n\"LastName\": \"Paul Jones\",\n\"Instrument\": \"Bass\",\n\"Second Instrument\": \"Keyboard\",\n}\n];\n"
+      },
+      "id": "ae6cec6e-165b-48a9-be4c-9dc7520dd8c5",
+      "name": "B. Led Zeppelin",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -420,
+        1000
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "functionCode": "return [\n  {\n    json: {\n      id: 0,\n    }\n  },\n  {\n    json: {\n      id: 1,\n    }\n  },\n  {\n    json: {\n      id: 2,\n    }\n  }\n];\n"
+      },
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        -500,
+        1660
+      ],
+      "typeVersion": 1,
+      "id": "2db37b4b-167d-449e-909b-d96def95da9d"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "n8n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -100,
+        1440
+      ],
+      "typeVersion": 1,
+      "id": "db50c84e-f5fa-4737-849f-063e21caf17e"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "nodemation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -100,
+        1580
+      ],
+      "typeVersion": 1,
+      "id": "3529dd9b-b988-4ba5-91b6-b3239df544f3"
+    },
+    {
+      "parameters": {
+        "value1": "={{$node[\"Function\"].json[\"id\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal"
+            },
+            {
+              "operation": "equal",
+              "value2": 1,
+              "output": 1
+            },
+            {
+              "operation": "equal",
+              "value2": 2,
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -300,
+        1660
+      ],
+      "typeVersion": 1,
+      "id": "050f62ed-aaae-4226-8a01-b2d3f84d722d"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "nathan"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -100,
+        1720
+      ],
+      "typeVersion": 1,
+      "id": "7eef481a-a95e-46f0-9ed0-34e3c722f367"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        -100,
+        1860
+      ],
+      "typeVersion": 1,
+      "id": "8b4dcc61-9e3e-4113-9ee6-b4b164d37961"
+    },
+    {
+      "parameters": {
+        "operation": "getAllPeople"
+      },
+      "name": "Customer Datastore",
+      "type": "n8n-nodes-base.n8nTrainingCustomerDatastore",
+      "position": [
+        -800,
+        3000
+      ],
+      "typeVersion": 1,
+      "id": "3ff2e28b-2d92-4d73-a4a2-423775ccd8e6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"country\"]}}",
+              "value2": "US"
+            }
+          ]
+        }
+      },
+      "name": "Country equals US",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -480,
+        2700
+      ],
+      "typeVersion": 1,
+      "id": "9fc14823-00e8-47fa-a71d-4158baf15dd1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"country\"]}}",
+              "operation": "isEmpty"
+            },
+            {
+              "value1": "={{$json[\"name\"]}}",
+              "operation": "contains",
+              "value2": "Max"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "name": "Country is empty or Name contains 'Max'",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -480,
+        3000
+      ],
+      "typeVersion": 1,
+      "id": "573ffaa2-4ed9-4ac1-94b4-8f2d390b3577"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"country\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "US"
+            },
+            {
+              "value2": "CO",
+              "output": 1
+            },
+            {
+              "value2": "UK",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "name": "Country based branching",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -480,
+        3400
+      ],
+      "typeVersion": 1,
+      "id": "19aef898-b4d6-4021-add7-973dd372da0c"
+    },
+    {
+      "parameters": {
+        "content": "## 3. Multiple branches\nWe use the `Switch` when there more than 2 possible outcomes to the filtering. We do that by specifying the condition under **Routing rules** inside the node.\n\nIn this example we send all **US-based** customers data to route 0, **customers from CO** to route 1, **customers from the UK** to route 2, and all the rest to route 3 as a fallback",
+        "height": 360,
+        "width": 520
+      },
+      "name": "Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -520,
+        3200
+      ],
+      "typeVersion": 1,
+      "id": "8dbad206-1187-4cf9-a5b0-9ee7cbb729e7"
+    },
+    {
+      "parameters": {
+        "content": "## 1. Single condition If\nFilter out data that you don't want or send data to different branches",
+        "height": 260,
+        "width": 520
+      },
+      "name": "Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -520,
+        2580
+      ],
+      "typeVersion": 1,
+      "id": "f48f7622-51bf-4b89-9d50-f46a6cd085e1"
+    },
+    {
+      "parameters": {
+        "content": "## 2. If with And/Or conditions\nSet the **Combine** field to: \n`ALL` for `AND` condition\n`ANY` for `OR` condition",
+        "height": 280,
+        "width": 520
+      },
+      "name": "Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -520,
+        2880
+      ],
+      "typeVersion": 1,
+      "id": "4af3ea30-63f2-40b3-a511-ecf218e8ada7"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Customer Datastore (n8n training)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Customer Datastore (n8n training)": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "A. Ingredients Needed": {
+      "main": [
+        [
+          {
+            "node": "Ingredients in stock from recipe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "B. Ingredients in stock": {
+      "main": [
+        [
+          {
+            "node": "Ingredients in stock from recipe",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "A. Ingredients": {
+      "main": [
+        [
+          {
+            "node": "Merge recipe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "B. Recipe quantities": {
+      "main": [
+        [
+          {
+            "node": "Merge recipe",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "A. Queen": {
+      "main": [
+        [
+          {
+            "node": "Super Band",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "B. Led Zeppelin": {
+      "main": [
+        [
+          {
+            "node": "Super Band",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Function": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Customer Datastore": {
+      "main": [
+        [
+          {
+            "node": "Country is empty or Name contains 'Max'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Country based branching",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Country equals US",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "76d7ba23-c867-46de-b2b9-bd3b14c0f79c",
+  "meta": {
+    "instanceId": "ae2926b2e0953a822bd2b40d4cd54268b85c01db465403d197bdb1c81b5632e1"
+  },
+  "id": "hPy5sNnGeg0AyuKS",
+  "tags": []
+}
